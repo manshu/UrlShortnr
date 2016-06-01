@@ -8,4 +8,4 @@
 
 # Demo
 
-[UrlShortner Demo link](https://www.url.manshu.me)
+[UrlShortner Demo link](http://url.manshu.me)
