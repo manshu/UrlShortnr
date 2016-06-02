@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Url\Shortner\Facades\Little;
-use Illuminate\Support\Facades\Redirect as Redirect;
 use Url\Validation\ValidationException;
+use Url\Exceptions\NonExistentHashException;
 class LinksController extends Controller
 {
     public function create()
@@ -23,9 +22,9 @@ class LinksController extends Controller
         }
         catch (ValidationException $e)
         {
-             return Redirect::home()->withErrors($e->getErrors())->withInput();
+             return \Redirect::home()->withErrors($e->getErrors())->withInput();
         }
-        return Redirect::home()->with([
+        return \Redirect::home()->with([
             'flash_message' => 'Here you go!' . link_to($hash),
             'hashed' => $hash
         ]);
@@ -35,11 +34,11 @@ class LinksController extends Controller
     {
         try {
             $url = Little::geturlbyHash($hash);
-            return Redirect::to('http://' . $url);
+            return \Redirect::to($url);
         }
         catch (NonExistentHashException $e)
         {
-            return Redirect::home()->withFlashmessage('Sorry'); 
+            return \Redirect::home()->with('Message', 'No Sorry');
         } 
     }
 }

@@ -27,6 +27,6 @@ class EventListener
      */
     public function handle(SomeEvent $event)
     {
-        Event::listen('link.creating', 'Url\Validation\LinkValidator@fire');
+        
     }
 }

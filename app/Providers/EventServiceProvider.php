@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Url\Validation\Validator;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\Validator' => [
+            'App\Listeners\LinkCreating',
         ],
     ];
 
@@ -27,7 +28,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
-        $events->listen('links.creating','Url\Validation\LinkValidator@fire');
+        $events->listen('link.creating', 'Url\Validation\LinkValidator@fire');
     }
 }

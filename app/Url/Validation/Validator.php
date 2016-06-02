@@ -19,7 +19,7 @@ abstract class Validator
     {
         $validation = $this->validator->make($data, static::$rules);
 
-        if ($validation->fails()) throw new ValidationException($validation->message());
+        if ($validation->fails()) throw new ValidationException($validation->messages());
 
         return true;
     }

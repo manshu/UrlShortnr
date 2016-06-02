@@ -1,6 +1,8 @@
 <?php namespace Url\Validation;
 
-class ValidationException extends \Exception
+use Exception;
+
+class ValidationException extends Exception
 {
     protected $errors;
     /**

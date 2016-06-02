@@ -2,12 +2,11 @@
 
 use Url\Exceptions\NonExistentHashException;
 use Url\Repositories\LinkRepoInterface;
-use \Event as Event;
 use Url\Utilities\UrlHasher;
 class LittleService
 {
     protected $linkrepo;
-    private $urlHasher;
+    private   $urlHasher;
     /**
      * LittleService constructor.
      * @param $linkrepo
@@ -37,7 +36,7 @@ class LittleService
     {
         $hash = $this->urlHasher->make($url);
         $data = compact('url', 'hash');
-        Event::fire('link.creating', [$data]);
+        \Event::fire('link.creating', [$data]);
         $this->linkrepo->create($data);
         return $hash;
     }
